@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "WebAPI"
+		},
+		{
+			"path": "client"
 		}
 	],
 	"settings": {}

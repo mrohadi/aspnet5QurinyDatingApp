@@ -26,6 +26,9 @@ namespace WebAPI
                 options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
             });
 
+            // Enable CORS
+            services.AddCors();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -46,6 +49,10 @@ namespace WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(policy => 
+                policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"
+            ));
 
             app.UseAuthorization();
 
