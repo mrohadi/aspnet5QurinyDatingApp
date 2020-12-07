@@ -1,11 +1,17 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using WebAPI.Data;
+using WebAPI.Extensions;
+using WebAPI.Interfaces;
+using WebAPI.Services;
 
 namespace WebAPI
 {
@@ -20,14 +26,12 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Setting up SQLite Provider
-            services.AddDbContext<DataContext>(options =>
-            {
-                options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
-            });
-
+            // Using Application Services Extension 
+            services.AddApplicationServices(_config);
             // Enable CORS
             services.AddCors();
+            // Using Identity Services Extension
+            services.AddIdentityServices(_config);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -54,6 +58,7 @@ namespace WebAPI
                 policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"
             ));
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
