@@ -14,7 +14,12 @@ namespace WebAPI.Extensions
         public static IServiceCollection AddApplicationServices(
             this IServiceCollection services, IConfiguration config)   
         {
+            // 
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+            // 
             services.AddScoped<ITokenService, TokenService>(); 
+            // 
+            services.AddScoped<IPhotoService, PhotoService>();
             // Inject UserRepository
             services.AddScoped<IUserRepository, UserRepository>();
             // Inject Automapper
