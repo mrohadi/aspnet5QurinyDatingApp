@@ -20,6 +20,8 @@ namespace WebAPI.Extensions
             services.AddScoped<ITokenService, TokenService>(); 
             // 
             services.AddScoped<IPhotoService, PhotoService>();
+            // 
+            services.AddScoped<LogUserActivity>();
             // Inject UserRepository
             services.AddScoped<IUserRepository, UserRepository>();
             // Inject Automapper
