@@ -21,6 +21,8 @@ namespace WebAPI.Extensions
             // 
             services.AddScoped<IPhotoService, PhotoService>();
             // 
+            services.AddScoped<ILikesRepository, LikesRepository>();
+            // 
             services.AddScoped<LogUserActivity>();
             // Inject UserRepository
             services.AddScoped<IUserRepository, UserRepository>();
