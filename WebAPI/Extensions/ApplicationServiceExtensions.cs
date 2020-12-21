@@ -23,6 +23,8 @@ namespace WebAPI.Extensions
             // 
             services.AddScoped<ILikesRepository, LikesRepository>();
             // 
+            services.AddScoped<IMessageRepository, MessageRepository>();
+            // 
             services.AddScoped<LogUserActivity>();
             // Inject UserRepository
             services.AddScoped<IUserRepository, UserRepository>();

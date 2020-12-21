@@ -22,8 +22,12 @@ namespace WebAPI.Entities
         public string Country { get; set; }
         public ICollection<Photo> Photos { get; set; }
 
-        // Many to many relationship
+        // Many to many relationship for like feature
         public ICollection<UserLike> LikedByUsers { get; set; }
         public ICollection<UserLike> LikedUsers { get; set; }
+
+        // Many to many relationship for message feature
+        public ICollection<Message> MessageSent { get; set; }
+        public ICollection<Message> MessageRecived { get; set; }
     }
 }
