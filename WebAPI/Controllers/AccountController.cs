@@ -12,10 +12,10 @@ namespace WebAPI.Controllers
 {
     public class AccountController : BaseApiController
     {
-        private readonly ITokenService _tokenService;
-        private readonly IMapper _mapper;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly ITokenService _tokenService;
+        private readonly IMapper _mapper;
 
         public AccountController(
             UserManager<AppUser> userManager, 
