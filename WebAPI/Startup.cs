@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using WebAPI.Extensions;
 using WebAPI.Middleware;
+using WebAPI.SignalR;
 
 namespace WebAPI
 {
@@ -24,6 +25,8 @@ namespace WebAPI
             services.AddCors();
             // Using Identity Services Extension
             services.AddIdentityServices(_config);
+            // Adding SignalR
+            services.AddSignalR();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -48,9 +51,10 @@ namespace WebAPI
 
             app.UseRouting();
 
-            app.UseCors(policy => 
-                policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"
-            ));
+            app.UseCors(policy => policy.AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .WithOrigins("https://localhost:4200"));
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -58,7 +62,9 @@ namespace WebAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                });
+                endpoints.MapHub<PresenceHub>("hubs/presence");
+                endpoints.MapHub<MessageHub>("hubs/message");
+            });
         }
     }
 }

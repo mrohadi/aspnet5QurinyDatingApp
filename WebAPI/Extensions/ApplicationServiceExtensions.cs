@@ -6,6 +6,7 @@ using WebAPI.Data;
 using WebAPI.Helpers;
 using WebAPI.Interfaces;
 using WebAPI.Services;
+using WebAPI.SignalR;
 
 namespace WebAPI.Extensions
 {
@@ -14,6 +15,8 @@ namespace WebAPI.Extensions
         public static IServiceCollection AddApplicationServices(
             this IServiceCollection services, IConfiguration config)   
         {
+            // 
+            services.AddSingleton<PresenceTracker>();
             // 
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             // 
