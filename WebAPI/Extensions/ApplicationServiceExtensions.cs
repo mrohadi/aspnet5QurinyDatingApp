@@ -23,14 +23,10 @@ namespace WebAPI.Extensions
             services.AddScoped<ITokenService, TokenService>(); 
             // 
             services.AddScoped<IPhotoService, PhotoService>();
-            // 
-            services.AddScoped<ILikesRepository, LikesRepository>();
-            // 
-            services.AddScoped<IMessageRepository, MessageRepository>();
+            // Inject UnitOfWork 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             // 
             services.AddScoped<LogUserActivity>();
-            // Inject UserRepository
-            services.AddScoped<IUserRepository, UserRepository>();
             // Inject Automapper
             services.AddAutoMapper(typeof(AuthoMapperProfiles).Assembly);
             // Setting up SQLite Provider

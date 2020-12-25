@@ -32,6 +32,7 @@ import { HasRoleDirective } from "./_directives/has-role.directive";
 import { UserManagementComponent } from "./admin/user-management/user-management.component";
 import { PhotoManagementComponent } from "./admin/photo-management/photo-management.component";
 import { RolesModalComponent } from "./modals/roles-modal/roles-modal.component";
+import { ConfirmDialogComponent } from "./modals/confirm-dialog/confirm-dialog.component";
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { RolesModalComponent } from "./modals/roles-modal/roles-modal.component"
     UserManagementComponent,
     PhotoManagementComponent,
     RolesModalComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +76,6 @@ import { RolesModalComponent } from "./modals/roles-modal/roles-modal.component"
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [RolesModalComponent],
+  entryComponents: [RolesModalComponent, ConfirmDialogComponent],
 })
 export class AppModule {}
